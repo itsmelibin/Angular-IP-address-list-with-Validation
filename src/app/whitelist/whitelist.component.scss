@@ -1,0 +1,135 @@
+.whitelist-main{
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 15px;
+    height: 100%;
+    width: 500px;
+    padding-top: 20px;
+    margin-left: 5%;
+    ::placeholder {
+        color: #BEBEBE;
+        opacity: 1; /* Firefox */
+      }
+      
+      :-ms-input-placeholder { /* Internet Explorer 10-11 */
+       color: #BEBEBE;
+      }
+      
+      ::-ms-input-placeholder { /* Microsoft Edge */
+       color: #BEBEBE;
+      }
+    input:focus{
+        outline: none;
+    }
+    & .each-input{
+        & .ng-invalid.ng-touched , & .ng-invalid.ng-dirty{ 
+            border-bottom: 2px solid #a80000;
+        }
+    }
+    & .header{
+        height: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 10px;
+        align-items: center;
+        border-bottom: 1px solid lightgrey;
+        color: #007ad9;
+        & i{
+            height: 25px;
+            width: 25px;
+            cursor: pointer;
+            color: grey;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        & .user-type{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-weight: 400;
+        }
+    }
+    & .ip-block{
+        height: auto;
+        width: 100%;
+        & .ipList{
+            padding-top: 15px;
+            height: 100%;
+            width: 100%;
+        }
+        & .each-input{
+            height: 40px;
+            padding: 5px;
+            display: flex;
+            justify-content: flex-start;
+            align-content: center;
+            margin-bottom: 10px;
+            position: relative;
+            & input{
+                height: 100%;
+                width: calc(100% - 60px);
+                font-size: 15px;
+                color: darkslategrey;
+                border-top: none; 
+                border-left: none;   
+                border-right: none; 
+                background-color: #F5F5F5;
+                padding: 10px;
+                font-family: monospace;
+            }
+            & .disabled{
+                opacity: 0.4;
+                cursor: not-allowed;
+            }
+            & .trash-button{
+                width: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                color: indianred;
+                margin-left: 10px;
+            }
+            & .new-button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                width: 20px;
+                color: forestgreen;
+                margin-left: 10px;
+            }
+            & .error-message-text{
+                left: 5px;
+                position: absolute;
+                bottom: -12px;
+                font-size: 12px;
+                color: #a80000;
+                font-weight: 400;
+            }
+        }
+        & .message-details{
+            height: 100%;
+            width: calc( 82% - 10px);  
+            padding: 5px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            float: right;
+        }
+    }
+    & .save-button{
+        height: 100%;
+        width: 100px; 
+        padding: 5px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        float: left;
+        & button.ui-button{
+            width: 100px;
+        }
+    }
+}

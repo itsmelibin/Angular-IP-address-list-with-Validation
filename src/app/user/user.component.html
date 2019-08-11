@@ -1,0 +1,15 @@
+<div class='user-main'>
+  <div class='user-select'>
+    <div class='user-drop-down'>
+      Select User:
+      <p-dropdown [options]="userOptions" [(ngModel)]="selectedOption" placeholder="Select" (onChange)="updatePlan($event)"  optionLabel="label" [showClear]="true"></p-dropdown>
+    </div>
+    <div class='submit-button'>
+      <p-button icon="pi pi-check" *ngIf=selectedOption routerLink="/whitelist/{{selectedOption.value}}" label="Submit" ></p-button>
+    </div>
+  </div>
+  <div class='plan-details'>
+    <app-message
+      [severity]=severity 
+      [text]=text></app-message></div>
+</div>

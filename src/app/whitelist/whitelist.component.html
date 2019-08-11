@@ -1,0 +1,24 @@
+<div class='whitelist-main'>
+ <div class='header'>
+    <span class='back-button'>
+        <i class="fa fa-arrow-left" routerLink="/user" pTooltip="Back to Users" tooltipPosition="right"></i></span>
+    <div class='user-type'>{{userType}} user</div>
+</div>
+<div class='ip-block'>
+  <form [formGroup]="ipAddressForm" >
+    <div *ngIf = "maxIps > 0" formArrayName="ipList" class='ipList'>
+      <div class='each-input'[formGroupName]="i" *ngFor="let item of ipAddressForm.get('ipList').controls; let i = index;let last = last">
+        <input formControlName="ipAddress" placeholder="IP address" (blur)="clearMessages()" (keyup)="checkFormStatus()" (blur)="checkFormStatus()">
+        <span class='trash-button'>
+          <i (click)="removeItem(i)" class="fa fa-minus" aria-hidden="true" pTooltip="Remove IP" tooltipPosition="top"></i></span>
+        <span *ngIf=last class='new-button'>
+          <i (click)="addItem()" class="fa fa-plus" aria-hidden="true" pTooltip="Add IP" tooltipPosition="top"></i></span>
+      </div>
+    </div>
+  </form>
+  <div class='message-details' *ngIf=message.length>
+    <app-message [severity]=severity [text]=message></app-message></div>
+  </div>
+  <p-button pTooltip="Save the IP List" tooltipPosition="top" (click)='!isDisabled() && saveItem()' class='save-button' icon="pi pi-check" 
+            [disabled]="isDisabled() || !isUpdated()" label={{buttonText}}></p-button>
+</div>

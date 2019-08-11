@@ -1,0 +1,41 @@
+.user-main{
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 15px;
+    height: 200px;
+    width: 400px;
+    padding-top: 20px;
+    margin-left: 5%;
+    & .user-select{
+        height: 40px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        & .user-drop-down{
+            width: calc(100% - 115px);
+            padding: 5px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            float: left;
+            padding-right: 0;
+            & p-dropdown{
+                padding-left: 5px;
+            }
+        }
+        & .submit-button{
+            width: 100px;
+            padding: 5px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 0;
+        }
+    }
+    & .plan-details{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 15px;
+    }
+}
