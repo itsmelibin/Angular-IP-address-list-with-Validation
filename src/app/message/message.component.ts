@@ -5,10 +5,11 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss']
 })
+
 export class MessageComponent implements OnInit {
 
-  @Input() severity: string;
-  @Input() text: string;
+  @Input() public severity: string;
+  @Input() public text: string;
 
   constructor() { }
 

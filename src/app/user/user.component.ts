@@ -10,10 +10,11 @@ import { User } from './model/user.model';
 })
 
 export class UserComponent implements OnInit {
-  userOptions: User[];
-  selectedOption: User;
-  severity: string;
-  text: string;
+
+  public userOptions: User[];
+  public selectedOption: User;
+  public severity: string;
+  public text: string;
 
   constructor() {
     this.userOptions = UserConst.plans;
@@ -23,16 +24,16 @@ export class UserComponent implements OnInit {
     this.hidePlanDetails();
   }
 
-  updatePlan(plan) {
+  public updatePlan(plan): void {
     (!!plan.value) ? this.showPlanDetails(plan.value) : this.hidePlanDetails();
   }
 
-  showPlanDetails(plan) {
+  private showPlanDetails(plan): void {
     this.severity = 'info';
     this.text = this.userOptions.filter((eachPlan) => eachPlan.value === plan.value.toLowerCase())[0].details;
   }
 
-  hidePlanDetails() {
+  private hidePlanDetails(): void {
     this.text = '';
   }
 

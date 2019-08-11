@@ -12,6 +12,7 @@ import { UserConst } from '../user/user.const';
 })
 
 export class WhitelistComponent implements OnInit {
+
   public ipAddressForm: FormGroup;
   public ipAddress: FormArray;
   public userType: string;
@@ -58,14 +59,6 @@ export class WhitelistComponent implements OnInit {
     }
   }
 
-  public showList(item): FormGroup {
-    return this.formBuilder.group({ ipAddress: [item.ipAddress, [this.ipValidator()]]});
-  }
-
-  public createItem(): FormGroup {
-    return this.formBuilder.group({ ipAddress: ['', [this.ipValidator()]]});
-  }
-
   public addItem(): void {
     this.ipList.length < this.maxIps ? this.getNewItem() :
     this.waringMessage(`${this.userType} user cannot add more than ${this.maxIps} IP address`);
@@ -95,25 +88,6 @@ export class WhitelistComponent implements OnInit {
     this.disableSave = true;
   }
 
-  public waringMessage(text): void {
-    this.severity = 'warn';
-    this.message = text;
-  }
-
-  public errorMessage(text): void {
-    this.severity = 'error';
-    this.message = text;
-  }
-
-  public successMessage(text): void {
-    this.severity = 'success';
-    this.message = text;
-  }
-
-  public clearMessages(): void {
-    this.message = '';
-  }
-
   public checkFormStatus(): void {
     this.message = '';
     this.disableSave = false;
@@ -140,11 +114,38 @@ export class WhitelistComponent implements OnInit {
             && (!!this.savedItems && this.savedItems.length === 0)) || (this.ipAddressForm.status === 'INVALID');
   }
 
-  public ipValidator(): ValidatorFn {
+  private ipValidator(): ValidatorFn {
     const validIpRegEx = /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
     return (control: AbstractControl): {[key: string]: any} | null => {
         const valid = validIpRegEx.test(control.value);
         return (valid || control.value.length === 0 ) ? null : {invalidIp: {value: control.value}};
     };
+  }
+
+  private showList(item): FormGroup {
+    return this.formBuilder.group({ ipAddress: [item.ipAddress, [this.ipValidator()]]});
+  }
+
+  private createItem(): FormGroup {
+    return this.formBuilder.group({ ipAddress: ['', [this.ipValidator()]]});
+  }
+
+  private waringMessage(text): void {
+    this.severity = 'warn';
+    this.message = text;
+  }
+
+  private errorMessage(text): void {
+    this.severity = 'error';
+    this.message = text;
+  }
+
+  private successMessage(text): void {
+    this.severity = 'success';
+    this.message = text;
+  }
+
+  private clearMessages(): void {
+    this.message = '';
   }
 }
