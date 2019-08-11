@@ -16,13 +16,14 @@ export class WhitelistComponent implements OnInit {
   public ipAddress: FormArray;
   public userType: string;
   public whitelistIps: Whitelist[];
-  public maxIps: number;
   public ipList: FormArray;
   public severity: string;
   public message: string;
   public buttonText: string;
   public savedItems: any[];
   public USERCONST: any;
+  public maxIps = 0;
+  public disableSave: boolean;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
@@ -42,7 +43,7 @@ export class WhitelistComponent implements OnInit {
 
   public getList(): void {
     this.ipList = this.ipAddressForm.get('ipList') as FormArray;
-    this.savedItems = JSON.parse(localStorage.getItem(this.userType.toLowerCase()));
+    this.savedItems = JSON.parse(localStorage.getItem(this.userType.toLowerCase())) || [];
     this.appendtoList();
   }
 
@@ -91,6 +92,7 @@ export class WhitelistComponent implements OnInit {
     const userType = this.userType.toLowerCase();
     localStorage.setItem(userType, JSON.stringify(this.savedItems));
     this.buttonText = 'Saved';
+    this.disableSave = true;
   }
 
   public waringMessage(text): void {
@@ -114,23 +116,22 @@ export class WhitelistComponent implements OnInit {
 
   public checkFormStatus(): void {
     this.message = '';
+    this.disableSave = false;
     this.ipAddressForm.status === 'INVALID' ?
          this.errorMessage('invalid IP Address') : this.isUpdated() ? this.buttonText = 'Save' : this.buttonText = 'Saved';
   }
 
   public isUpdated(): boolean {
-    return (!!this.savedItems && this.savedItems.length !== this.ipAddressForm.value.ipList.length) || this.isValueUpdated();
+    return (this.savedItems.length !== this.ipAddressForm.value.ipList.length) || this.isValueUpdated();
   }
 
   public isValueUpdated(): boolean {
     let update = false;
-    if (!!this.savedItems) {
-      this.savedItems.map((eachIp, index) => {
-        if (!update && (eachIp.ipAddress !== this.ipAddressForm.value.ipList[index].ipAddress)) {
-          update = true;
-        }
-      });
-    }
+    this.savedItems.map((eachIp, index) => {
+      if (!update && (eachIp.ipAddress !== this.ipAddressForm.value.ipList[index].ipAddress)) {
+        update = true;
+      }
+    });
     return update;
   }
 

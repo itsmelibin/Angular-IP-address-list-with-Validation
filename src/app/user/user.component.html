@@ -8,8 +8,5 @@
       <p-button icon="pi pi-check" *ngIf=selectedOption routerLink="/whitelist/{{selectedOption.value}}" label="Submit" ></p-button>
     </div>
   </div>
-  <div class='plan-details'>
-    <app-message
-      [severity]=severity 
-      [text]=text></app-message></div>
+  <div class='plan-details'><app-message [severity]=severity [text]=text></app-message></div>
 </div>

@@ -20,5 +20,5 @@
     <app-message [severity]=severity [text]=message></app-message></div>
   </div>
   <p-button pTooltip="Save the IP List" tooltipPosition="top" (click)='!isDisabled() && saveItem()' class='save-button' icon="pi pi-check" 
-            [disabled]="isDisabled() || !isUpdated()" label={{buttonText}}></p-button>
+            [disabled]="isDisabled() || !isUpdated() || disableSave" label={{buttonText}}></p-button>
 </div>

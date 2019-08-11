@@ -6,15 +6,10 @@ import { RouterModule } from '@angular/router';
 import { ButtonModule} from 'primeng/button';
 import { MessagesModule} from 'primeng/messages';
 import { MessageModule} from 'primeng/message';
+import { User } from './model/user.model';
 
 import { MessageComponent } from '../message/message.component';
 import { UserComponent } from './user.component';
-
-interface User {
-  label: string;
-  value: string;
-  details: string;
-}
 
 describe('UsersComponent', () => {
   let component: UserComponent;

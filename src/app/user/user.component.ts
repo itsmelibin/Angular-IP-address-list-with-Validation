@@ -1,11 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserConst } from './user.const';
-
-interface User {
-  label: string;
-  value: string;
-  details: string;
-}
+import { User } from './model/user.model';
 
 @Component({
   selector: 'app-user',
