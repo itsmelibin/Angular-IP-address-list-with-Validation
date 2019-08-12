@@ -82,10 +82,17 @@ export class WhitelistComponent implements OnInit {
 
   public saveItem(): void {
     this.savedItems = this.ipAddressForm.value.ipList.filter((eachIp) => eachIp.ipAddress.trim().length > 0);
-    const userType = this.userType.toLowerCase();
-    localStorage.setItem(userType, JSON.stringify(this.savedItems));
+    this.removeDuplicate();
     this.buttonText = 'Saved';
     this.disableSave = true;
+  }
+
+  public removeDuplicate(): any {
+    this.savedItems = this.savedItems.filter((ipAdress, index, array) => index === array.findIndex((findIp) =>
+        findIp.ipAddress === ipAdress.ipAddress)
+    );
+    const userType = this.userType.toLowerCase();
+    localStorage.setItem(userType, JSON.stringify(this.savedItems));
   }
 
   public checkFormStatus(): void {
