@@ -87,7 +87,7 @@ export class WhitelistComponent implements OnInit {
     this.disableSave = true;
   }
 
-  public removeDuplicate(): any {
+  public removeDuplicate(): void {
     this.savedItems = this.savedItems.filter((ipAdress, index, array) => index === array.findIndex((findIp) =>
         findIp.ipAddress === ipAdress.ipAddress)
     );
