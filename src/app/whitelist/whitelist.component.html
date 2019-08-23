@@ -1,7 +1,7 @@
 <div class='whitelist-main'>
  <div class='header'>
     <span class='back-button'>
-        <i class="fa fa-arrow-left" routerLink="/user" pTooltip="Back to Users" tooltipPosition="right"></i></span>
+        <i class="fa fa-arrow-left" [routerLink]="['/user', { label: userType}]" pTooltip="Back to Users" tooltipPosition="right"></i></span>
     <div class='user-type'>{{userType}} user</div>
 </div>
 <div class='ip-block'>

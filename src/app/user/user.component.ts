@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { UserConst } from './user.const';
 import { User } from './model/user.model';
 
@@ -16,12 +17,17 @@ export class UserComponent implements OnInit {
   public severity: string;
   public text: string;
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
     this.userOptions = UserConst.plans;
   }
 
   ngOnInit() {
     this.hidePlanDetails();
+    if (this.route.snapshot.paramMap.get('label')) {
+      this.selectedOption = UserConst.plans.filter((eachPlan) => eachPlan.value === 
+      this.route.snapshot.paramMap.get('label').toLowerCase())[0];
+      this.showPlanDetails(this.selectedOption);
+    }
   }
 
   public updatePlan(plan): void {
